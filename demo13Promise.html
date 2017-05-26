@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Perfect Destination Traveling Website Template | Home</title>
+
+<style type="text/css">
+
+</style>
+
+</head>
+<body>
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+"use strict";
+
+//函数func1有异步操作，希望func1的代码执行完成后，再执行func2
+//函数func2有异步操作，希望func2的代码执行完成后，再执行func3
+
+//Promise：是个对象，这个对象就是个异步操作；内部有个异步操作；解决的是异步变同步的回调函数嵌套问题。
+
+function func1(){
+	console.log("func1");
+	let p = new Promise(function(resolve,reject){
+		setTimeout(function(){
+			console.log("这是func1函数的异步操作代码");
+			resolve();//调用函数
+		},2000);		
+	});
+	return p;
+}
+
+function func2(){
+	console.log("func2");
+	
+	let p = new Promise(function(resolve,reject){
+		setTimeout(function(){
+			console.log("这是func2函数的异步操作代码");
+			resolve();//调用函数
+		},2000);		
+	});	
+	return p;	
+}
+
+function func3(){
+	console.log("func3");
+}
+
+window.onload = function(){
+	func1().then(func2).then(func3);
+	
+}
+
+
+
+</script>
+
